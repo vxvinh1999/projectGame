@@ -67,7 +67,7 @@ int BackBufferHeight = 0;
 #define BALL_START_Y 150.0f
 
 #define BALL_START_VX 0.3f
-#define BALL_START_VY 0.3f
+#define BALL_START_VY -0.3f
 
 #define BALL_WIDTH 20.0f
 #define BALL_HEIGHT 20.0f
@@ -404,11 +404,11 @@ void Update(DWORD dt)
 		// brick always is out of screen
 			if (brick_x <= 0)
 			{
-				brick_x = 0;
+				brick_x = 1.0f;
 			}
 			else if (brick_x >= BackBufferWidth - BRICK_WIDTH)
 			{
-				brick_x = BackBufferWidth - BRICK_WIDTH;
+				brick_x = BackBufferWidth - BRICK_WIDTH - 1.0f;
 			}
 	}
 	if (brick_y <= 0 || brick_y >= BackBufferHeight - BRICK_HEIGHT) {
@@ -416,11 +416,11 @@ void Update(DWORD dt)
 		brick_vy = -brick_vy;
 		if (brick_y <= 0)
 		{
-			brick_y = 0;
+			brick_y = 1.0f;
 		}
-		else if (brick_y >= BackBufferWidth - BRICK_HEIGHT)
+		else if (brick_y >= BackBufferHeight - BRICK_HEIGHT)
 		{
-			brick_y = BackBufferWidth - BRICK_HEIGHT;
+			brick_y = BackBufferHeight - BRICK_HEIGHT - 1.0f;
 		}
 	}
 
@@ -432,11 +432,11 @@ void Update(DWORD dt)
 		ball_vx = -ball_vx;
 		if (ball_x <= 0)
 		{
-			ball_x = 0;
+			ball_x = 1.0f;
 		}
 		else if (ball_x >= BackBufferWidth - BALL_WIDTH)
 		{
-			ball_x = BackBufferWidth - BALL_WIDTH;
+			ball_x = BackBufferWidth - BALL_WIDTH - 1.0f;
 		}
 	}
 	if (ball_y <= 0 || ball_y >= BackBufferHeight - BALL_HEIGHT) {
@@ -444,11 +444,11 @@ void Update(DWORD dt)
 		ball_vy = -ball_vy;
 		if (ball_y <= 0)
 		{
-			ball_y = 0;
+			ball_y = 1.0f;
 		}
-		else if (ball_y >= BackBufferWidth - BALL_HEIGHT)
+		else if (ball_y >= BackBufferHeight - BALL_HEIGHT)
 		{
-			ball_y = BackBufferWidth - BALL_HEIGHT;
+			ball_y = BackBufferHeight - BALL_HEIGHT - 1.0f;
 		}
 	}
 }
