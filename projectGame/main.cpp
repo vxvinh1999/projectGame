@@ -51,6 +51,7 @@ int BackBufferWidth = 0;
 int BackBufferHeight = 0;
 
 #define TEXTURE_PATH_BRICK L"brick.png"
+
 #define BRICK_START_X 8.0f
 #define BRICK_START_Y 200.0f
 
@@ -60,6 +61,16 @@ int BackBufferHeight = 0;
 #define BRICK_WIDTH 16.0f
 #define BRICK_HEIGHT 16.0f
 
+#define TEXTURE_PATH_BALL L"ball.jpg"
+
+#define BALL_START_X 8.0f
+#define BALL_START_Y 200.0f
+
+#define BALL_START_VX 0.2f
+#define BALL_START_VY 0.2f
+
+#define BALL_WIDTH 16.0f
+#define BALL_HEIGHT 16.0f
 
 ID3D10Texture2D* texBrick = NULL;				// Texture object to store brick image
 ID3DX10Sprite* spriteObject = NULL;				// Sprite handling object 
@@ -70,6 +81,15 @@ float brick_x = BRICK_START_X;
 float brick_vx = BRICK_START_VX;
 float brick_vy = BRICK_START_VY;
 float brick_y = BRICK_START_Y;
+
+ID3D10Texture2D* texBall = NULL;				// Texture object to store brick image
+
+D3DX10_SPRITE spriteBall;
+
+float ball_x = BALL_START_X;
+float ball_vx = BALL_START_VX;
+float ball_vy = BALL_START_VY;
+float ball_y = BALL_START_Y;
 
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -291,6 +311,71 @@ void LoadResources()
 
 
 	DebugOut((wchar_t*)L"[INFO] Texture loaded Ok: %s \n", TEXTURE_PATH_BRICK);
+
+	//Ball init
+	// Loads the texture into a temporary ID3D10Resource object
+	HRESULT hr2 = D3DX10CreateTextureFromFile(pD3DDevice,
+		TEXTURE_PATH_BALL,
+		NULL,
+		NULL,
+		&pD3D10Resource,
+		NULL);
+
+	// Make sure the texture was loaded successfully
+	if (FAILED(hr2))
+	{
+		DebugOut((wchar_t*)L"[ERROR] Failed to load texture file: %s \n", TEXTURE_PATH_BALL);
+		return;
+	}
+
+	// Translates the ID3D10Resource object into a ID3D10Texture2D object
+	pD3D10Resource->QueryInterface(__uuidof(ID3D10Texture2D), (LPVOID*)&texBall);
+	pD3D10Resource->Release();
+
+	if (!texBall) {
+		DebugOut((wchar_t*)L"[ERROR] Failed to convert from ID3D10Resource to ID3D10Texture2D \n");
+		return;
+	}
+
+	// Get the texture details
+	D3D10_TEXTURE2D_DESC desc2;
+	texBall->GetDesc(&desc2);
+
+	// Create a shader resource view of the texture
+	D3D10_SHADER_RESOURCE_VIEW_DESC SRVDesc2;
+
+	// Clear out the shader resource view description structure
+	ZeroMemory(&SRVDesc2, sizeof(SRVDesc2));
+
+	// Set the texture format
+	SRVDesc2.Format = desc2.Format;
+	// Set the type of resource
+	SRVDesc2.ViewDimension = D3D10_SRV_DIMENSION_TEXTURE2D;
+	SRVDesc2.Texture2D.MipLevels = desc2.MipLevels;
+
+	ID3D10ShaderResourceView* gSpriteTextureRV2 = NULL;
+
+	pD3DDevice->CreateShaderResourceView(texBall, &SRVDesc2, &gSpriteTextureRV2);
+
+	// Set the spritefs shader resource view
+	spriteBall.pTexture = gSpriteTextureRV2;
+
+	// top-left location in U,V coords
+	spriteBall.TexCoord.x = 0;
+	spriteBall.TexCoord.y = 0;
+
+	// Determine the texture size in U,V coords
+	spriteBall.TexSize.x = 1.0f;
+	spriteBall.TexSize.y = 1.0f;
+
+	// Set the texture index. Single textures will use 0
+	spriteBall.TextureIndex = 0;
+
+	// The color to apply to this sprite, full color applies white.
+	spriteBall.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+
+
+	DebugOut((wchar_t*)L"[INFO] Texture loaded Ok: %s \n", TEXTURE_PATH_BALL);
 }
 
 /*
@@ -359,6 +444,21 @@ void Render()
 		spriteBrick.matWorld = (matScaling * matTranslation);
 
 		spriteObject->DrawSpritesImmediate(&spriteBrick, 1, 0, 0);
+
+		//Ball init
+		// The translation matrix to be created
+		D3DXMATRIX matTranslation2;
+		// Create the translation matrix
+		D3DXMatrixTranslation(&matTranslation2, ball_x, (BackBufferHeight - ball_y), 0.1f);
+
+		// Scale the sprite to its correct width and height
+		D3DXMATRIX matScaling2;
+		D3DXMatrixScaling(&matScaling2, BALL_WIDTH, BALL_HEIGHT, 1.0f);
+
+		// Setting the spritefs position and size
+		spriteBall.matWorld = (matScaling2 * matTranslation2);
+
+		spriteObject->DrawSpritesImmediate(&spriteBall, 1, 0, 0);
 
 		// Finish up and send the sprites to the hardware
 		spriteObject->End();
