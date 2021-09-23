@@ -63,14 +63,14 @@ int BackBufferHeight = 0;
 
 #define TEXTURE_PATH_BALL L"ball.jpg"
 
-#define BALL_START_X 8.0f
-#define BALL_START_Y 200.0f
+#define BALL_START_X 5.0f
+#define BALL_START_Y 150.0f
 
-#define BALL_START_VX 0.2f
-#define BALL_START_VY 0.2f
+#define BALL_START_VX 0.3f
+#define BALL_START_VY 0.3f
 
-#define BALL_WIDTH 16.0f
-#define BALL_HEIGHT 16.0f
+#define BALL_WIDTH 20.0f
+#define BALL_HEIGHT 20.0f
 
 ID3D10Texture2D* texBrick = NULL;				// Texture object to store brick image
 ID3DX10Sprite* spriteObject = NULL;				// Sprite handling object 
@@ -402,18 +402,54 @@ void Update(DWORD dt)
 		// brick_x is still out of screen on the left, but since brick_x < 0 so brick_vx (move right)= -brick_vx (try move left)
 		// it will move to left even more then move right but brick_x + brick_vx < 0 so it will try move left again creating loop
 		// brick always is out of screen
-		////	if (brick_x <= 0)
-		////	{
-		////		brick_x = 0;
-		////	}
-		////	else if (brick_x >= BackBufferWidth - BRICK_WIDTH)
-		////	{
-		////		brick_x = BackBufferWidth - BRICK_WIDTH;
-		////	}
+			if (brick_x <= 0)
+			{
+				brick_x = 0;
+			}
+			else if (brick_x >= BackBufferWidth - BRICK_WIDTH)
+			{
+				brick_x = BackBufferWidth - BRICK_WIDTH;
+			}
 	}
 	if (brick_y <= 0 || brick_y >= BackBufferHeight - BRICK_HEIGHT) {
 
 		brick_vy = -brick_vy;
+		if (brick_y <= 0)
+		{
+			brick_y = 0;
+		}
+		else if (brick_y >= BackBufferWidth - BRICK_HEIGHT)
+		{
+			brick_y = BackBufferWidth - BRICK_HEIGHT;
+		}
+	}
+
+	ball_x += ball_vx * dt;
+	ball_y += ball_vy * dt;
+
+	if (ball_x <= 0 || ball_x >= BackBufferWidth - BALL_WIDTH) {
+
+		ball_vx = -ball_vx;
+		if (ball_x <= 0)
+		{
+			ball_x = 0;
+		}
+		else if (ball_x >= BackBufferWidth - BALL_WIDTH)
+		{
+			ball_x = BackBufferWidth - BALL_WIDTH;
+		}
+	}
+	if (ball_y <= 0 || ball_y >= BackBufferHeight - BALL_HEIGHT) {
+
+		ball_vy = -ball_vy;
+		if (ball_y <= 0)
+		{
+			ball_y = 0;
+		}
+		else if (ball_y >= BackBufferWidth - BALL_HEIGHT)
+		{
+			ball_y = BackBufferWidth - BALL_HEIGHT;
+		}
 	}
 }
 
