@@ -55,6 +55,7 @@ int BackBufferHeight = 0;
 #define BRICK_START_Y 200.0f
 
 #define BRICK_START_VX 0.2f
+#define BRICK_START_VY 0.2f
 
 #define BRICK_WIDTH 16.0f
 #define BRICK_HEIGHT 16.0f
@@ -67,6 +68,7 @@ D3DX10_SPRITE spriteBrick;
 
 float brick_x = BRICK_START_X;
 float brick_vx = BRICK_START_VX;
+float brick_vy = BRICK_START_VY;
 float brick_y = BRICK_START_Y;
 
 
@@ -302,12 +304,19 @@ void Update(DWORD dt)
 	//brick_x++;
 
 	brick_x += brick_vx * dt;
+	brick_y += brick_vy * dt;
 
 	if (brick_x <= 0 || brick_x >= BackBufferWidth - BRICK_WIDTH) {
 
 		brick_vx = -brick_vx;
 
+
 		//	//Why not having these logics would make the brick disappear sometimes?  
+		// Because if brick_x < 0 (brick touches left) then brick_vx (move left) = -brick_vx (try move right)
+		// but sometimes (brick_x + brick_vx) < 0 (try move right but not enough to make brick_x > 0)
+		// brick_x is still out of screen on the left, but since brick_x < 0 so brick_vx (move right)= -brick_vx (try move left)
+		// it will move to left even more then move right but brick_x + brick_vx < 0 so it will try move left again creating loop
+		// brick always is out of screen
 		////	if (brick_x <= 0)
 		////	{
 		////		brick_x = 0;
@@ -316,6 +325,10 @@ void Update(DWORD dt)
 		////	{
 		////		brick_x = BackBufferWidth - BRICK_WIDTH;
 		////	}
+	}
+	if (brick_y <= 0 || brick_y >= BackBufferHeight - BRICK_HEIGHT) {
+
+		brick_vy = -brick_vy;
 	}
 }
 
