@@ -27,6 +27,8 @@
 
 #include "Mario.h"
 
+#include "Goomba.h"
+
 
 #define WINDOW_CLASS_NAME L"SampleWindow"
 #define MAIN_WINDOW_TITLE L"02 - Sprite animation"
@@ -49,6 +51,11 @@ CMario *mario;
 #define MARIO_START_X 10.0f
 #define MARIO_START_Y 130.0f
 #define MARIO_START_VX 0.1f
+
+Goomba* goomba;
+#define GOOMBA_START_X 10.0f
+#define GOOMBA_START_Y 50.0f
+#define GOOMBA_START_VX 0.1f
 
 CBrick *brick;
 
@@ -76,7 +83,7 @@ void LoadResources()
 	textures->Add(ID_TEX_MARIO, TEXTURE_PATH_MARIO);
 	//textures->Add(ID_ENEMY_TEXTURE, TEXTURE_PATH_ENEMIES, D3DCOLOR_XRGB(156, 219, 239));
 	textures->Add(ID_TEX_MISC, TEXTURE_PATH_MISC);
-
+	textures->Add(ID_TEX_ENEMY, TEXTURE_PATH_ENEMIES);
 
 	CSprites * sprites = CSprites::GetInstance();
 	
@@ -98,6 +105,9 @@ void LoadResources()
 	sprites->Add(20003, 336, 117, 352, 133, texMisc);
 	sprites->Add(20004, 354, 117, 370, 133, texMisc);
 	
+	LPTEXTURE texEnemy = textures->Get(ID_TEX_ENEMY);
+
+
 
 	CAnimations * animations = CAnimations::GetInstance();
 	LPANIMATION ani;
@@ -125,6 +135,7 @@ void LoadResources()
 	
 	mario = new CMario(MARIO_START_X, MARIO_START_Y, MARIO_START_VX);
 	brick = new CBrick(100.0f, 100.0f);
+	goomba = new Goomba(GOOMBA_START_X, GOOMBA_START_Y, GOOMBA_START_VX);
 }
 
 /*
@@ -158,6 +169,7 @@ void Render()
 
 		brick->Render();
 		mario->Render();
+		goomba->Render();
 
 		// Uncomment this line to see how to draw a porttion of a texture  
 		//g->Draw(10, 10, texMisc, 300, 117, 316, 133);
