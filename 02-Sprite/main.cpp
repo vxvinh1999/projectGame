@@ -155,6 +155,7 @@ void LoadResources()
 void Update(DWORD dt)
 {
 	mario->Update(dt);
+	goomba->Update(dt);
 }
 
 void Render()
