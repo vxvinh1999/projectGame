@@ -44,12 +44,12 @@ CMario *mario;
 #define MARIO_START_VX 0.1f
 #define MARIO_START_VY 0.1f
 
-CBrick *brick;
 #define BRICK_X 10.0f
 #define BRICK_Y 120.0f
 #define BRICK_WIDTH 16.0f
 #define BRICK_HEIGHT 16.0f
-
+int iBrickNum = SCREEN_WIDTH / BRICK_WIDTH;
+CBrick **brick = new CBrick* [iBrickNum];
 LPTEXTURE texMario = NULL;
 LPTEXTURE texBrick = NULL;
 LPTEXTURE texMisc = NULL;
@@ -83,7 +83,9 @@ void LoadResources()
 	//texMisc = game->LoadTexture(MISC_TEXTURE_PATH);
 
 	mario = new CMario(MARIO_START_X, MARIO_START_Y, MARIO_START_VX, MARIO_START_VY, texMario);
-	brick = new CBrick(BRICK_X, BRICK_Y, texBrick);
+	for (int i = 0; i < iBrickNum; i++) {
+		brick[i] = new CBrick(BRICK_X + i*BRICK_WIDTH, BRICK_Y, texBrick);
+	}
 
 	
 	// objects.push_back(mario);
@@ -110,7 +112,9 @@ void Update(DWORD dt)
 	*/
 
 	mario->Update(dt);
-	brick->Update(dt);
+	for (int i = 0; i < iBrickNum; i++) {
+		brick[i]->Update(dt);
+	}
 
 	DebugOutTitle(L"01 - Skeleton %0.1f, %0.1f", mario->GetX(), mario->GetY());
 }
@@ -138,7 +142,9 @@ void Render()
 		FLOAT NewBlendFactor[4] = { 0,0,0,0 };
 		pD3DDevice->OMSetBlendState(g->GetAlphaBlending(), NewBlendFactor, 0xffffffff);
 
-		brick->Render();
+		for (int i = 0; i < iBrickNum; i++) {
+			brick[i]->Render();
+		}
 		mario->Render();
 
 		// Uncomment this line to see how to draw a porttion of a texture  
