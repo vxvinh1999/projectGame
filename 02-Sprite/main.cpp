@@ -106,8 +106,8 @@ void LoadResources()
 	sprites->Add(20004, 354, 117, 370, 133, texMisc);
 	
 	LPTEXTURE texEnemy = textures->Get(ID_TEX_ENEMY);
-
-
+	sprites->Add(30001, 21, 20, 36, 35, texEnemy);
+	sprites->Add(30002, 1, 20, 16, 35, texEnemy);
 
 	CAnimations * animations = CAnimations::GetInstance();
 	LPANIMATION ani;
