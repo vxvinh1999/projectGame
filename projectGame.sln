@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "projectGame", "projectGame\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01-Skeleton", "01-Skeleton\01-Skeleton.vcxproj", "{959C78E1-3BC0-4E30-BB42-048A1F251A85}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02-Sprite", "02-Sprite\02-Sprite.vcxproj", "{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{959C78E1-3BC0-4E30-BB42-048A1F251A85}.Release|x64.Build.0 = Release|x64
 		{959C78E1-3BC0-4E30-BB42-048A1F251A85}.Release|x86.ActiveCfg = Release|Win32
 		{959C78E1-3BC0-4E30-BB42-048A1F251A85}.Release|x86.Build.0 = Release|Win32
+		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Debug|x64.ActiveCfg = Debug|x64
+		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Debug|x64.Build.0 = Debug|x64
+		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Debug|x86.ActiveCfg = Debug|Win32
+		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Debug|x86.Build.0 = Debug|Win32
+		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Release|x64.ActiveCfg = Release|x64
+		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Release|x64.Build.0 = Release|x64
+		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Release|x86.ActiveCfg = Release|Win32
+		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
