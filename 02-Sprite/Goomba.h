@@ -5,7 +5,7 @@
 #include "Animation.h"
 #include "Animations.h"
 
-#define GOOMBA_WIDTH 14
+#define GOOMBA_WIDTH 17
 
 class Goomba : public CGameObject
 {

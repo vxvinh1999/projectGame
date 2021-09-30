@@ -131,6 +131,16 @@ void LoadResources()
 	ani->Add(20003);
 	ani->Add(20004);
 	animations->Add(510, ani);
+
+	ani = new CAnimation(200);
+	ani->Add(30001);
+	ani->Add(30002);
+	animations->Add(601, ani);
+
+	ani = new CAnimation(200);
+	ani->Add(30002);
+	ani->Add(30001);
+	animations->Add(602, ani);
 	
 	
 	mario = new CMario(MARIO_START_X, MARIO_START_Y, MARIO_START_VX);

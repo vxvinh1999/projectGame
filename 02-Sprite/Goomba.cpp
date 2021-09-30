@@ -31,8 +31,8 @@ void Goomba::Render()
 	LPANIMATION ani;
 
 	//[RED FLAG][TODO]: Student needs to think about how to associate this animation/asset to Mario!!
-	if (vx > 0) ani = CAnimations::GetInstance()->Get(500);
-	else ani = CAnimations::GetInstance()->Get(501);
+	if (vx > 0) ani = CAnimations::GetInstance()->Get(601);
+	else ani = CAnimations::GetInstance()->Get(602);
 
 	ani->Render(x, y);
 }
