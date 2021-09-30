@@ -50,12 +50,12 @@
 CMario *mario;
 #define MARIO_START_X 10.0f
 #define MARIO_START_Y 130.0f
-#define MARIO_START_VX 0.1f
+#define MARIO_START_VX 0.05f
 
 Goomba* goomba;
 #define GOOMBA_START_X 10.0f
 #define GOOMBA_START_Y 50.0f
-#define GOOMBA_START_VX 0.1f
+#define GOOMBA_START_VX 0.05f
 
 CBrick *brick;
 
@@ -132,12 +132,12 @@ void LoadResources()
 	ani->Add(20004);
 	animations->Add(510, ani);
 
-	ani = new CAnimation(200);
+	ani = new CAnimation(300);
 	ani->Add(30001);
 	ani->Add(30002);
 	animations->Add(601, ani);
 
-	ani = new CAnimation(200);
+	ani = new CAnimation(300);
 	ani->Add(30002);
 	ani->Add(30001);
 	animations->Add(602, ani);
