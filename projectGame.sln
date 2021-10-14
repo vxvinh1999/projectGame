@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01-Skeleton", "01-Skeleton\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02-Sprite", "02-Sprite\02-Sprite.vcxproj", "{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03-Keyboard-States", "03-Keyboard-States\03-Keyboard-States.vcxproj", "{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Release|x64.Build.0 = Release|x64
 		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Release|x86.ActiveCfg = Release|Win32
 		{AADFB8E6-BDA3-4F69-9F0F-5C30EE6EACBA}.Release|x86.Build.0 = Release|Win32
+		{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}.Debug|x64.ActiveCfg = Debug|x64
+		{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}.Debug|x64.Build.0 = Debug|x64
+		{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}.Debug|x86.ActiveCfg = Debug|Win32
+		{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}.Debug|x86.Build.0 = Debug|Win32
+		{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}.Release|x64.ActiveCfg = Release|x64
+		{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}.Release|x64.Build.0 = Release|x64
+		{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}.Release|x86.ActiveCfg = Release|Win32
+		{5BB3DC44-D6AF-494B-9841-43B9AE3C6588}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
