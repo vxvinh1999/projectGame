@@ -88,12 +88,12 @@ void LoadResources()
 	
 	LPTEXTURE texMario = textures->Get(ID_TEX_MARIO);
 
-	sprites->Add(10001, 246, 154, 260, 181, texMario);
+	sprites->Add(10001, 246, 154, 259, 181, texMario);
 
 	sprites->Add(10002, 275, 154, 290, 181, texMario);
 	sprites->Add(10003, 304, 154, 321, 181, texMario);
 
-	sprites->Add(10011, 186, 154, 200, 181, texMario);
+	sprites->Add(10011, 186, 154, 199, 181, texMario);
 
 	sprites->Add(10012, 155, 154, 170, 181, texMario);
 	sprites->Add(10013, 125, 154, 140, 181, texMario);
